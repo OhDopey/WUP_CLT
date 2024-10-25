@@ -154,6 +154,28 @@ print(paste('mean = ', mean(my1000$k25),' sd = ',sd(my1000$k25)))
 
 ```
 
-Mean= 49.80408 SD= 8.45
+Mean= 49.73152 SD= 8.05
+
+```{r}
+numb=36
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T),"kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol=numb)
+x.avg <- apply(mdata,1,mean)
+my1000$k36= x.avg
+
+p <- ggplot(my1000, aes(x=k36), (Col=sex))+
+geom_density()
+
+# Add mean line
+geom_vline(aes(xintercept=mean(k36)),
+color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 36") +
+xlab("temperature") + ylab("desnity")
+
+print(paste('mean = ', mean(my1000$k36),' sd = ',sd(my1000$k36)))
+
+```
+
+Mean= 50.0444722222222  SD= 6.95
 
 
