@@ -87,3 +87,29 @@ print(paste('mean = ', mean(my1000$k4),' sd = ',sd(my1000$k4)))
 ### In this case the stdev was cut in half because the sample size was four. This is what the central limit theorem says. There are also 5 peaks. They go from FFFF,to FFFM, to FFMM to FMMM and finally MMMM.
 
 # Now finish by adding blocks with numb being 9, then 16, 25, and 36. be sure to mention how the standard deviation progresses as the sample size changes,
+
+
+```{r}
+numb=9
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T),"kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol=numb)
+x.avg <- apply(mdata,1,mean)
+my1000$k9 = x.avg
+
+p <- ggplot(my1000, aes(x=k9), (Col=sex))+
+geom_density()
+
+# Add mean line
+geom_vline(aes(xintercept=mean(k9)),
+color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 9") +
+xlab("temperature") + ylab("desnity")
+
+print(paste('mean = ', mean(my1000$k9),' sd = ',sd(my1000$k9)))
+
+```
+
+According to the Central Limit Theorem, the graph shows that the mean gets closer to 50 if you round it up, while standard deviation is decreasing which is in according with CLT theory for each change we make. It was expected, because the sample standard deviation was 13.36 and when divided by square root 9 (the sample size) it equal approximately 4.453333  which is close to the results which is approximately 4 or 5. overall, the graph is getting more symmetrical.
+
+
+
